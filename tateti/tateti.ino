@@ -27,7 +27,7 @@ void setup() {
   pinMode(clockPin, OUTPUT);
   pinMode(dataPin, OUTPUT);
   
-  Serial.println("SETUP");
+  Serial.println("FINISH SETUP");
 }
 
 void loop() {  
@@ -59,14 +59,14 @@ void prenderLed(int led) {
     digitalWrite(led, HIGH);
   } else {
     int pos = led - limite;
-    statusUltimos8 = statusUltimos8 + pow(2, pos);
-    prenderUltimos8();
+    int nuevoEstado = statusUltimos8 + String(pow(2, pos)).toInt(); //Hack for convert double to int
+    prenderUltimos8(nuevoEstado);
   }
 }
 
-void prenderUltimos8() {
-    Serial.println("Prendiendo coso: ");
-    Serial.println(statusUltimos8);
+void prenderUltimos8(int estado) {
+    statusUltimos8 = estado;
+    Serial.println("Actualizando 74HC595: " + String(statusUltimos8, BIN));
     // take the latchPin low so 
     // the LEDs don't change while you're sending in bits:
     digitalWrite(latchPin, LOW);
@@ -84,19 +84,23 @@ void initLeds() {
     pinMode(i, OUTPUT);
   }
   Serial.println("");
-  statusUltimos8 = 0;
-  prenderUltimos8();
 }
 
 void ponerTodosLeds(int estado) {
+  Serial.println("Poner todos: " + String(estado));
   for (int i = ledInicial; i < cantLeds + ledInicial; i = i+1) {
     digitalWrite(i, estado);
+  }
+  if (estado){ 
+    prenderUltimos8(255);
+  } else {
+    prenderUltimos8(0);
   }
 }
 
 void recibirDatos() {
   mensaje = "-";
-  if (BT.available())   // Si llega un dato por el puerto BT se envía al monitor serial
+  if (BT.available())   // Si llega un dato por el puerto BT
   {
     mensaje = BT.readString();
     mensaje.toUpperCase();
@@ -104,7 +108,7 @@ void recibirDatos() {
     Serial.println(mensaje);
   }
 
-  if (Serial.available()) // Si llega un dato por el monitor serial se envía al puerto BT
+  if (Serial.available()) // Si llega un dato por el monitor serial
   {
     mensaje = Serial.readString();
     mensaje.toUpperCase();
