@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Tablero
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    Jugador: {{ player }}
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button color="{{ isUsed(0, 0) ? 'light' : 'warning'}}" disabled="{{ isUsed(0, 0) }}"
+          (click)="newMove(0, 0)">
+          {{ valueAt(0, 0) }}
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="{{ isUsed(0, 1) ? 'light' : 'warning'}}" disabled="{{ isUsed(0, 1) }}"
+          (click)="newMove(0, 1)">
+          {{ valueAt(0, 1) }}
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="{{ isUsed(0, 2) ? 'light' : 'warning'}}" disabled="{{ isUsed(0, 2) }}"
+          (click)="newMove(0, 2)">
+          {{ valueAt(0, 2) }}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button color="{{ isUsed(1, 0) ? 'light' : 'warning'}}" disabled="{{ isUsed(1, 0) }}"
+          (click)="newMove(1, 0)">
+          {{ valueAt(1, 0) }}
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="{{ isUsed(1, 1) ? 'light' : 'warning'}}" disabled="{{ isUsed(1, 1) }}"
+          (click)="newMove(1, 1)">
+          {{ valueAt(1, 1) }}
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="{{ isUsed(1, 2) ? 'light' : 'warning'}}" disabled="{{ isUsed(1, 2) }}"
+          (click)="newMove(1, 2)">
+          {{ valueAt(1, 2) }}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button color="{{ isUsed(2, 0) ? 'light' : 'warning'}}" disabled="{{ isUsed(2, 0) }}"
+          (click)="newMove(2, 0)">
+          {{ valueAt(2, 0) }}
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="{{ isUsed(2, 1) ? 'light' : 'warning'}}" disabled="{{ isUsed(2, 1) }}"
+          (click)="newMove(2, 1)">
+          {{ valueAt(2, 1) }}
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="{{ isUsed(2, 2) ? 'light' : 'warning'}}" disabled="{{ isUsed(2, 2) }}"
+          (click)="newMove(2, 2)">
+          {{ valueAt(2, 2) }}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-button expand="full" fill="outline" (click)="restart()">Restart</ion-button>
+</ion-content>
