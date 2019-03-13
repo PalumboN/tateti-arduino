@@ -2,7 +2,7 @@ import Tateti from './tateti';
 
 const allPosibleWinners = [
   {
-    title: '3 horizontal in first row',
+    title: 'horizontal in first row',
     values:
       [
         ['X', 'X', 'X'],
@@ -12,7 +12,7 @@ const allPosibleWinners = [
   },
 
   {
-    title: '3 horizontal in second row',
+    title: 'horizontal in second row',
     values:
       [
         [],
@@ -22,7 +22,7 @@ const allPosibleWinners = [
   },
 
   {
-    title: '3 horizontal in third row',
+    title: 'horizontal in third row',
     values:
       [
         [],
@@ -32,7 +32,7 @@ const allPosibleWinners = [
   },
 
   {
-    title: '3 vertical in first column',
+    title: 'vertical in first column',
     values:
       [
         ['X'],
@@ -42,7 +42,7 @@ const allPosibleWinners = [
   },
 
   {
-    title: '3 vertical in second column',
+    title: 'vertical in second column',
     values:
       [
         [undefined, 'X'],
@@ -52,11 +52,31 @@ const allPosibleWinners = [
   },
 
   {
-    title: '3 vertical in third column',
+    title: 'vertical in third column',
     values:
       [
         [undefined, undefined, 'X'],
         [undefined, undefined, 'X'],
+        [undefined, undefined, 'X']
+      ],
+  },
+
+  {
+    title: 'diagonal up',
+    values:
+      [
+        [undefined, undefined, 'X'],
+        [undefined, 'X'],
+        ['X']
+      ],
+  },
+
+  {
+    title: 'diagonal down',
+    values:
+      [
+        ['X'],
+        [undefined, 'X'],
         [undefined, undefined, 'X']
       ],
   },

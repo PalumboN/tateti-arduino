@@ -11,6 +11,10 @@ export default class Tateti {
     return _.zip(...this.tablero);
   }
 
+  get tableroEspejado() {
+    return _.reverse(this.tablero);
+  }
+
   newMove(x: number, y: number, player: String) {
     this.tablero[y][x] = player;
   }
@@ -20,10 +24,13 @@ export default class Tateti {
   }
 
   winner(): String {
-    return this._hWinner(this.tablero) || this._hWinner(this.tableroInvertido);
+    return this._horizontalWinner(this.tablero) ||
+      this._horizontalWinner(this.tableroInvertido) ||
+      this._diagonalDownWinner(this.tablero) ||
+      this._diagonalDownWinner(this.tableroEspejado);
   }
 
-  _hWinner(tablero: String[][]): String {
+  _horizontalWinner(tablero: String[][]): String {
     return _(tablero)
       .map((row) => _.countBy(row))
       .map(_.invert)
@@ -31,5 +38,10 @@ export default class Tateti {
       .without('undefined')
       .compact()
       .head();
+  }
+
+  _diagonalDownWinner(tablero: String[][]): String {
+    const diagonal = _.map(tablero, (row, i) => _.get(row, i));
+    return this._horizontalWinner([diagonal]);
   }
 }
