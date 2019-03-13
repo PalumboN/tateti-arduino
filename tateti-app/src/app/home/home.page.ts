@@ -1,4 +1,6 @@
+import Tateti from '../models/tateti';
 import { Component } from '@angular/core';
+
 
 @Component({
   selector: 'app-home',
@@ -7,28 +9,24 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
   player: String;
-  values: String[][];
+  tateti: Tateti;
 
   constructor() {
     this.restart();
   }
 
   isUsed(x, y) {
-    return this.valueAt(x, y) !== undefined;
+    return this.tateti.valueAt(x, y) !== undefined;
   }
 
   newMove(x, y) {
-    this.values[x][y] = this.player;
+    this.tateti.newMove(x, y, this.player);
     console.log('SEND', this.player, '-', (3 * x) + y + 1);
     this._changePlayer();
   }
 
-  valueAt(x, y) {
-    return this.values[x][y];
-  }
-
   restart() {
-    this.values = [[], [], []];
+    this.tateti = new Tateti();
     this._changePlayer();
     console.log('SEND', 'R');
   }
