@@ -92,7 +92,7 @@ describe('Tateti', () => {
 
   describe('at start', () => {
     it('should have no player values', () => {
-      expect(tateti.tablero).toEqual([[], [], []]);
+      expect(tateti.board).toEqual([[], [], []]);
     });
 
     it('should not have a winner', () => {
@@ -105,7 +105,7 @@ describe('Tateti', () => {
     allPosibleWinners.forEach(({ title, values }) => {
 
       it('when ' + title, () => {
-        tateti.tablero = values;
+        tateti.board = values;
         expect(tateti.winner()).toEqual('X');
       });
 

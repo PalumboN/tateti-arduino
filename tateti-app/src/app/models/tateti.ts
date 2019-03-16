@@ -1,32 +1,32 @@
 import * as _ from 'lodash';
 
 export default class Tateti {
-  tablero: String[][];
+  board: String[][];
 
   constructor() {
-    this.tablero = [[], [], []];
+    this.board = [[], [], []];
   }
 
   get tableroInvertido() {
-    return _.zip(...this.tablero);
+    return _.zip(...this.board);
   }
 
   get tableroEspejado() {
-    return _.reverse(this.tablero);
+    return _.reverse(this.board);
   }
 
   newMove(x: number, y: number, player: String) {
-    this.tablero[y][x] = player;
+    _.set(this.board, `${y}.${x}`, player);
   }
 
   valueAt(x: number, y: number) {
-    return this.tablero[y][x];
+    return this.board[y][x];
   }
 
   winner(): String {
-    return this._horizontalWinner(this.tablero) ||
+    return this._horizontalWinner(this.board) ||
       this._horizontalWinner(this.tableroInvertido) ||
-      this._diagonalDownWinner(this.tablero) ||
+      this._diagonalDownWinner(this.board) ||
       this._diagonalDownWinner(this.tableroEspejado);
   }
 

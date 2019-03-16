@@ -11,70 +11,98 @@
 
 <ion-content>
   <div>
-    Jugador: {{ player }}
+    Juega: {{ player }}
   </div>
+  <!-- <div>
+    <board-cell></board-cell>
+  </div> -->
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-button color="{{ isUsed(0, 0) ? 'light' : 'warning'}}" disabled="{{ isUsed(0, 0) }}"
-          (click)="newMove(0, 0)">
+        <ion-button color="light" [disabled]="isUsed(0, 0)" (click)="newMove(0, 0)">
           {{ valueAt(0, 0) }}
         </ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button color="{{ isUsed(0, 1) ? 'light' : 'warning'}}" disabled="{{ isUsed(0, 1) }}"
-          (click)="newMove(0, 1)">
-          {{ valueAt(0, 1) }}
+        <ion-button (click)="log(0, 0)">
+          log
         </ion-button>
       </ion-col>
       <ion-col>
-        <ion-button color="{{ isUsed(0, 2) ? 'light' : 'warning'}}" disabled="{{ isUsed(0, 2) }}"
-          (click)="newMove(0, 2)">
-          {{ valueAt(0, 2) }}
-        </ion-button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-button color="{{ isUsed(1, 0) ? 'light' : 'warning'}}" disabled="{{ isUsed(1, 0) }}"
-          (click)="newMove(1, 0)">
+        <ion-button color="light" [disabled]="isUsed(1, 0)" (click)="newMove(1, 0)">
           {{ valueAt(1, 0) }}
         </ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button color="{{ isUsed(1, 1) ? 'light' : 'warning'}}" disabled="{{ isUsed(1, 1) }}"
-          (click)="newMove(1, 1)">
-          {{ valueAt(1, 1) }}
+        <ion-button (click)="log(1, 0)">
+          log
         </ion-button>
       </ion-col>
       <ion-col>
-        <ion-button color="{{ isUsed(1, 2) ? 'light' : 'warning'}}" disabled="{{ isUsed(1, 2) }}"
-          (click)="newMove(1, 2)">
-          {{ valueAt(1, 2) }}
+        <ion-button color="light" [disabled]="isUsed(2, 0)" (click)="newMove(2, 0)">
+          {{ valueAt(2, 0) }}
+        </ion-button>
+        <ion-button (click)="log(2, 0)">
+          log
         </ion-button>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-button color="{{ isUsed(2, 0) ? 'light' : 'warning'}}" disabled="{{ isUsed(2, 0) }}"
-          (click)="newMove(2, 0)">
-          {{ valueAt(2, 0) }}
+        <ion-button color="light" [disabled]="isUsed(0, 1)" (click)="newMove(0, 1)">
+          {{ valueAt(0, 1) }}
+        </ion-button>
+        <ion-button (click)="log(0, 1)">
+          log
         </ion-button>
       </ion-col>
       <ion-col>
-        <ion-button color="{{ isUsed(2, 1) ? 'light' : 'warning'}}" disabled="{{ isUsed(2, 1) }}"
-          (click)="newMove(2, 1)">
+        <ion-button color="light" [disabled]="isUsed(1, 1)" (click)="newMove(1, 1)">
+          {{ valueAt(1, 1) }}
+        </ion-button>
+        <ion-button (click)="log(1, 1)">
+          log
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="light" [disabled]="isUsed(2, 1)" (click)="newMove(2, 1)">
           {{ valueAt(2, 1) }}
         </ion-button>
+        <ion-button (click)="log(2, 1)">
+          log
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button color="light" [disabled]="isUsed(0, 2)" (click)="newMove(0, 2)">
+          {{ valueAt(0, 2) }}
+        </ion-button>
+        <ion-button (click)="log(0, 2)">
+          log
+        </ion-button>
       </ion-col>
       <ion-col>
-        <ion-button color="{{ isUsed(2, 2) ? 'light' : 'warning'}}" disabled="{{ isUsed(2, 2) }}"
-          (click)="newMove(2, 2)">
+        <ion-button color="light" [disabled]="isUsed(1, 2)" (click)="newMove(1, 2)">
+          {{ valueAt(1, 2) }}
+        </ion-button>
+        <ion-button (click)="log(1, 2)">
+          log
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="light" [disabled]="isUsed(2, 2)" (click)="newMove(2, 2)">
           {{ valueAt(2, 2) }}
+        </ion-button>
+        <ion-button (click)="log(2, 2)">
+          log
         </ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
 
   <ion-button expand="full" fill="outline" (click)="restart()">Restart</ion-button>
+
+  <ion-card text-center *ngIf="winner()">
+    <h2>
+      ¡El ganador es {{ winner() }}!
+    </h2>
+  </ion-card>
+
 </ion-content>
